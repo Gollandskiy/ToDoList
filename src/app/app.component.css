@@ -1,0 +1,179 @@
+.add-button {
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px; 
+  padding: 10px 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.longer-block, .styled-block, .additional-block {
+  display: inline-block;
+  width: calc(33.33% - 20px);
+  max-width: none;
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
+
+.longer-block {
+  background-color: #fcb3b3;
+  border-color: #f13c3c;
+  color: #6b0808;
+  flex: 1;
+  max-width: 33.33%;
+  margin-bottom: 20px;
+}
+
+.styled-block {
+  background-color: #c2e1f6;
+  border-color: #6da1bf;
+  flex: 1; 
+  max-width: 33.33%; 
+  margin-bottom: 20px;
+}
+
+.additional-block {
+  background-color: #81c784;
+  border-color: #4caf50; 
+  flex: 1;
+  max-width: 33.33%;
+  margin-bottom: 20px;
+}
+
+.longer-block:last-child, .styled-block:last-child, .additional-block:last-child {
+  margin-right: 0;
+}
+.delete-button {
+  background-color: #f44336; 
+  color: white; 
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+.search-container {
+    text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.task-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.task-description {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #666;
+}
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 190px;
+}
+
+.form-control input {
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #000 solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #000;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: cadetblue;
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #000;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+  color: cadetblue;
+  transform: translateY(-30px);
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+

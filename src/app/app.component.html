@@ -1,0 +1,112 @@
+
+  <div class="search-container">
+      <div class="form-control">
+    <input required="" type="value" [(ngModel)]="searchTerm">
+    <label>
+        <span style="transition-delay:350ms">S</span>
+        <span style="transition-delay:300ms">e</span>
+        <span style="transition-delay:250ms">a</span>
+        <span style="transition-delay:200ms">r</span>
+        <span style="transition-delay:150ms">c</span>
+        <span style="transition-delay:100ms">h</span>
+    </label>
+</div>
+  </div>
+
+<div class="task-container">
+  <div class="longer-block">
+    <h2>🌟 Важные задачи</h2>
+    <ul>
+      <li *ngFor="let item of filterTasks(todoList); let i = index">
+<strong class="task-title">{{ item.title }}</strong> <br>
+  <span class="task-description">Описание: {{ item.description }}</span> <br>
+  <span class="task-description">Тег: {{ item.tag }}</span> <br>
+  <span class="task-description">Дата исполнения: {{ item.dueDate }}</span> <br>
+        <button class="delete-button" (click)="editTask(item, 'todo')">Редактировать</button>
+        <button class="delete-button" (click)="deleteTask('todo', i)">Удалить</button>
+        <button class="delete-button" (click)="moveTask('todo', 'inProgress', i)">В процессе</button>
+        <button class="delete-button" (click)="moveTask('todo', 'complete', i)">Завершено</button>
+      </li>
+    </ul>
+    <button class="add-button" (click)="toggleForm('todo')">+</button>
+    <div class="form-container" *ngIf="showForm === 'todo'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="newTodo.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="newTodo.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="newTodo.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="newTodo.dueDate">
+      <button (click)="addTask('todo')">Добавить</button>
+    </div>
+    <div class="form-container" *ngIf="editingTask && editingList === 'todo'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="editingTask.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="editingTask.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="editingTask.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="editingTask.dueDate">
+      <button (click)="saveChanges()">Сохранить</button>
+      <button (click)="cancelEdit()">Отмена</button>
+    </div>
+  </div>
+
+  <div class="styled-block">
+    <h2>⏳ В процессе</h2>
+    <ul>
+      <li *ngFor="let item of filterTasks(inProgressList); let i = index">
+<strong class="task-title">{{ item.title }}</strong> <br>
+  <span class="task-description">Описание: {{ item.description }}</span> <br>
+  <span class="task-description">Тег: {{ item.tag }}</span> <br>
+  <span class="task-description">Дата исполнения: {{ item.dueDate }}</span> <br>
+        <button class="delete-button" (click)="editTask(item, 'inProgress')">Редактировать</button>
+        <button class="delete-button" (click)="deleteTask('inProgress', i)">Удалить</button>
+        <button class="delete-button" (click)="moveTask('inProgress', 'todo', i)">В ожидание</button>
+        <button class="delete-button" (click)="moveTask('inProgress', 'complete', i)">Завершено</button>
+      </li>
+    </ul>
+    <button class="add-button" (click)="toggleForm('inProgress')">+</button>
+    <div class="form-container" *ngIf="showForm === 'inProgress'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="newInProgress.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="newInProgress.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="newInProgress.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="newInProgress.dueDate">
+      <button class="delete-button" (click)="addTask('inProgress')">Добавить</button>
+    </div>
+    <div class="form-container" *ngIf="editingTask && editingList === 'inProgress'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="editingTask.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="editingTask.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="editingTask.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="editingTask.dueDate">
+      <button (click)="saveChanges()">Сохранить</button>
+      <button (click)="cancelEdit()">Отмена</button>
+    </div>
+  </div>
+
+  <div class="additional-block">
+    <h2>✅ Завершено</h2>
+    <ul>
+      <li *ngFor="let item of filterTasks(completeList); let i = index">
+<strong class="task-title">{{ item.title }}</strong> <br>
+  <span class="task-description">Описание: {{ item.description }}</span> <br>
+  <span class="task-description">Тег: {{ item.tag }}</span> <br>
+  <span class="task-description">Дата исполнения: {{ item.dueDate }}</span> <br>
+        <button class="delete-button" (click)="editTask(item, 'complete')">Редактировать</button>
+        <button class="delete-button" (click)="deleteTask('complete', i)">Удалить</button>
+        <button class="delete-button" (click)="moveTask('complete', 'todo', i)">В ожидание</button>
+        <button class="delete-button" (click)="moveTask('complete', 'inProgress', i)">В процессе</button>
+      </li>
+    </ul>
+    <button class="add-button" (click)="toggleForm('complete')">+</button>
+    <div class="form-container" *ngIf="showForm === 'complete'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="newComplete.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="newComplete.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="newComplete.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="newComplete.dueDate">
+      <button (click)="addTask('complete')">Добавить</button>
+    </div>
+    <div class="form-container" *ngIf="editingTask && editingList === 'complete'">
+      <input type="text" placeholder="Название дела" [(ngModel)]="editingTask.title">
+      <input type="text" placeholder="Описание дела" [(ngModel)]="editingTask.description">
+      <input type="text" placeholder="Тег" [(ngModel)]="editingTask.tag">
+      <input type="date" placeholder="Дата исполнения" [(ngModel)]="editingTask.dueDate">
+      <button (click)="saveChanges()">Сохранить</button>
+      <button (click)="cancelEdit()">Отмена</button>
+    </div>
+</div>
+</div>
